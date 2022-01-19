@@ -1,0 +1,18 @@
+<div class="row productPage">
+  <div class=" itemPage" style="margin-top: 20px;" *ngFor="let item of items">
+    <div class="card">
+      <div class="card-body  productCard">
+        <img
+          class="card-img-top  itemImage"
+          src="{{item.imagePath}}"
+          alt="{{item.name}}"
+
+        >
+        <h5 class="card-title itemTitle" style="height: 70px">{{item.name}}</h5>
+        <p class="card-text itemDesc" style="height: 100px">{{item.description}}</p>
+        <p class="itemPrice">€ {{item.price}}</p>
+        <a class="btn btn-primary itemToCartButton" (click)="addToCart(item.id)">Voeg toe aan winkelmand</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="registerForm">
+  <h2>Nieuw account aan maken</h2>
+  <form class="row">
+    <div class="col">
+      <label for="username_input">Gebruikersnaam</label>
+      <input type="text" class="form-control" id="username_input" placeholder="Gebruikersnaam">
+    </div>
+    <div class="form-group">
+      <label for="email_Input">E-mail address</label>
+      <input type="email" class="form-control" id="email_Input" aria-describedby="emailHelp" placeholder="Voer een E-mail addres in">
+    </div>
+    <div class="form-group">
+      <label for="password_Input">Wachtwoord</label>
+      <input type="password" class="form-control" id="password_Input" placeholder="Voer een wachtwoord in">
+    </div>
+    <div class="form-group">
+      <label for="passwordRep_Input">Herhaal wachtwoord</label>
+      <input type="password" class="form-control" id="passwordRep_Input" placeholder="Herhaal het ingevoerde wachtwoord">
+    </div>
+  </form>
+  <a class="btn btn-primary" routerLink="/login">Terug</a>
+  <button type="button" class="btn btn-primary" (click)="CheckInput()">Registreren</button>
+</div>

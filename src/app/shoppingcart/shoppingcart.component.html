@@ -1,0 +1,46 @@
+<div class=”Header”>
+  <h3 class="heading">Winkelwagentje</h3>
+  <button *ngIf="displayCart()" routerLink="" class="btn btn-success">Verder winkelen</button>
+</div>
+
+<body class="cartBody">
+<div class="empty" *ngIf="!displayCart()">
+  <h4>Gsseen items in je winkelwagen</h4>
+  <button routerLink="" class="btn btn-success">Vuurwerk kopen</button>
+</div>
+
+<div class="" *ngIf="displayCart()">
+  <div class="cartItem" *ngFor="let item of itemsInCart; let i = index">
+    <div class="card">
+      <div class="cartImg">
+        <img
+          class="card-img-top"
+          src="{{item.imagePath}}"
+          alt="{{item.name}}"
+
+        >
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{item.name}}</h5>
+        <p class="card-text">{{item.description}}</p>
+      </div>
+      <div class="itemQtyDiv">
+        <p class="qty-text">Aantal: </p>
+        <input type="number" class="qty" [value]="item.qty"
+               (blur)="validateInput($event, i)">
+      </div>
+      <div class="itemSubtotal">
+        <p>€ {{item.price * item.qty}} </p>
+      </div>
+      <div class="remove-btnDiv">
+        <button class="btn btn-danger" id="removeButton" (click)="deleteItem(i)">x</button>
+      </div>
+    </div>
+  </div>
+  <div class="card" id="price">
+    <h2 class="priceText">Totaalbedrag: </h2>
+    <h2 class="totalPrice">€ {{totalPrice}}</h2>
+  </div>
+</div>
+</body>
+

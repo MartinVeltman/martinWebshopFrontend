@@ -1,0 +1,32 @@
+.loginForm{
+  width: 40%;
+  margin: auto;
+
+}
+h2{
+  font-size: 2vw;
+}
+
+
+button{
+  float: right;
+  margin-top: 10px;
+}
+
+a{
+  margin-top: 10px;
+}
+
+@media (max-width: 880px){
+  h2{
+    font-size: 19px;
+  }
+
+}
+
+@media (max-width: 550px) {
+  .loginForm {
+    width: 80%;
+  }
+
+}

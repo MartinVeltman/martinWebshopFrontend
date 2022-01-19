@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+a:hover{
+  cursor: pointer;
+}
+
+.navbar-custom{
+  background-color: #F6CD13;
+
+}
+
+.btn-primary, .btn-success{
+  background-color: #F51800;
+  border-color: #F51800;
+}
+
+
+/*F51800*/
+/*F6CD13*/
+
+
