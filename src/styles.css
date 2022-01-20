@@ -8,10 +8,24 @@ a:hover{
 
 }
 
-.btn-primary, .btn-success{
+.btn-primary, .btn-success {
   background-color: #F51800;
   border-color: #F51800;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
+.btn-primary:hover, .btn-primary:focus{
+  background-color: #F6CD13;
+  border-color: #F6CD13;
+}
+
+.h2Header{
+  margin-right: 30px;
+}
+
+
+
+
 
 
 /*F51800*/

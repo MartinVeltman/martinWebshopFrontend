@@ -51,6 +51,7 @@ export class itemService {
   }
 
   addItemToCart(item: Item) {
+    console.log(item)
     const product = JSON.parse(<any>localStorage.getItem('cart'));
     let productExist: Item;
 
@@ -87,10 +88,11 @@ export class itemService {
   }
 
   setCartData(data: any) {
+    console.log(data)
     localStorage.setItem('cart', JSON.stringify(data));
   }
 
-  public saveItem(item: Item) {
+  public createNewItem(item: Item) {
     // @ts-ignore
     const token = Object.values(JSON.parse(localStorage.getItem('jwtKey'))).toString();
 
@@ -110,11 +112,11 @@ export class itemService {
   }
 
   public getItemsFromDB(): Observable<Item []> {
-    return this.http.get<Item []>(this.baseUrl + "/user/getItems")
+    return this.http.get<Item []>(this.baseUrl + "/user/getItems");
 
   }
 
-  public orderItem(username: string, orderValue: number){
+  public orderItem(username: string, orderValue: number) {
     return this.http.patch(
       this.baseUrl + `/user/createOrder?username=${username}&orderValue=${orderValue}`
       , {
@@ -123,7 +125,7 @@ export class itemService {
 
         })
       }).subscribe({
-      next: () => this.toastr.success('Bestelling succesvol geplaats, knallen maar!'),
+      next: () => this.toastr.success('Bestelling succesvol geplaats, knallen maar!'), //TODO: winkelmandje legen hier
       error: () => this.toastr.error('Bestelling plaatsen mislukt, bent u wel ingelogd ?')
     });
   }

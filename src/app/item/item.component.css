@@ -12,6 +12,7 @@
   grid-template-rows: 35% 8% 40% 6% 11%;
   text-align: center;
   justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
 
 }

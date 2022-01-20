@@ -46,7 +46,7 @@ export class AdminPanelComponent implements OnInit {
       return
     }
 
-    this.itemservice.saveItem(this.item);
+    this.itemservice.createNewItem(this.item);
 
   }
 

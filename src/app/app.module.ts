@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 import { ItemComponent } from './item/item.component';
 import { ShoppingcartComponent } from './shoppingcart/shoppingcart.component';
 import { LoginComponent } from './authentication/login/login.component';
-import { ShoppingpageComponent } from './shoppingpage/shoppingpage.component';
 import { AppRoutingModule } from './app-routing.module';
 import {RouterModule} from "@angular/router";
 import {itemService} from "./item/item.service";
@@ -14,6 +13,7 @@ import { RegisterComponent } from './authentication/register/register.component'
 import { AuthenticationComponent } from './authentication/authentication.component';
 import {HttpClientModule} from "@angular/common/http";
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 
 
@@ -23,10 +23,10 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     ItemComponent,
     ShoppingcartComponent,
     LoginComponent,
-    ShoppingpageComponent,
     RegisterComponent,
     AuthenticationComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import {Injectable} from "@angular/core";
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {User} from "./user.model";
+import {ToastrService} from "ngx-toastr";
 
 
 @Injectable()
@@ -11,6 +12,7 @@ export class authenticationService {
 
 
   constructor(private http: HttpClient,
+              private toastr: ToastrService
   ) {
   }
 
@@ -43,13 +45,14 @@ export class authenticationService {
 
 
   public getUsers(): Observable<User []> {
-    console.log('method werkt')
     return this.http.get<User []>(this.baseUrl + '/users');
 
   }
 
   public login(username: string, password: string) {
+    localStorage.removeItem('jwtKey');
     localStorage.setItem('username', JSON.stringify(username));
+
     return this.http.post(this.baseUrl + '/user/signin',
       {
         "username": username,
@@ -59,8 +62,17 @@ export class authenticationService {
         headers: new HttpHeaders().set(
           'Content-Type', 'application/json'
         )
-      }).subscribe(text => localStorage.setItem('jwtKey', JSON.stringify(text)));
+      }).subscribe({
+      next: (jwtToken: any) => this.loginSucces(jwtToken),
+      error: err => this.toastr.error('De inloggegevens zijn onjuist')
+    });
 
+
+  }
+
+  loginSucces(data: any) {
+    localStorage.setItem('jwtKey', JSON.stringify(data));
+    this.toastr.success('Succesvol ingelogd');
   }
 
 

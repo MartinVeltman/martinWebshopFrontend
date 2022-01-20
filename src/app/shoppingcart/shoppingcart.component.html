@@ -1,4 +1,4 @@
-<div class=”Header”>
+<div class="Header">
   <h3 class="heading">Winkelwagentje</h3>
   <button *ngIf="displayCart()" routerLink="" class="btn btn-success">Verder winkelen</button>
 </div>
@@ -33,7 +33,7 @@
         <p>€ {{item.price * item.qty}} </p>
       </div>
       <div class="remove-btnDiv">
-        <button class="btn btn-danger" id="removeButton" (click)="deleteItem(i)">x</button>
+        <img src="https://cdn-icons-png.flaticon.com/512/1017/1017530.png"  id="removeButton" (click)="deleteItem(i)">
       </div>
     </div>
   </div>
@@ -41,7 +41,10 @@
     <h2 class="priceText">Totaalbedrag: </h2>
     <h2 class="totalPrice">€ {{totalPrice}}</h2>
   </div>
-  <button class="btn btn-success" (click)="placeOrder(totalPrice)">Bestellen</button>
+  <div class="order">
+  <button class="btn btn-success orderBtn" (click)="placeOrder(totalPrice)">Bestellen</button>
+  </div>
 </div>
 </body>
+
 
