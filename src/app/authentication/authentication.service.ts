@@ -49,6 +49,7 @@ export class authenticationService {
   }
 
   public login(username: string, password: string) {
+    localStorage.setItem('username', JSON.stringify(username));
     return this.http.post(this.baseUrl + '/user/signin',
       {
         "username": username,
@@ -59,6 +60,7 @@ export class authenticationService {
           'Content-Type', 'application/json'
         )
       }).subscribe(text => localStorage.setItem('jwtKey', JSON.stringify(text)));
+
   }
 
 

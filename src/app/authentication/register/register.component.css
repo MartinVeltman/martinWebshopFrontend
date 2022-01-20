@@ -1,23 +1,23 @@
-.registerForm{
+.registerForm {
   width: 50%;
   margin: auto;
 }
 
-button{
+button {
   float: right;
   margin-top: 10px;
 }
 
-h2{
+h2 {
   font-size: 2vw;
 }
 
-a{
+a {
   margin-top: 10px;
 }
 
-@media (max-width: 880px){
-  h2{
+@media (max-width: 880px) {
+  h2 {
     font-size: 19px;
   }
 }

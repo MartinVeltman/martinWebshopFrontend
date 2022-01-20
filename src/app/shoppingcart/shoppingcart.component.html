@@ -5,7 +5,7 @@
 
 <body class="cartBody">
 <div class="empty" *ngIf="!displayCart()">
-  <h4>Gsseen items in je winkelwagen</h4>
+  <h4>Geen items in je winkelwagen</h4>
   <button routerLink="" class="btn btn-success">Vuurwerk kopen</button>
 </div>
 
@@ -41,6 +41,7 @@
     <h2 class="priceText">Totaalbedrag: </h2>
     <h2 class="totalPrice">€ {{totalPrice}}</h2>
   </div>
+  <button class="btn btn-success" (click)="placeOrder(totalPrice)">Bestellen</button>
 </div>
 </body>
 

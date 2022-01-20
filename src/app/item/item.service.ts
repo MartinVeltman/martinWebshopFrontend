@@ -114,4 +114,18 @@ export class itemService {
 
   }
 
+  public orderItem(username: string, orderValue: number){
+    return this.http.patch(
+      this.baseUrl + `/user/createOrder?username=${username}&orderValue=${orderValue}`
+      , {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+
+        })
+      }).subscribe({
+      next: () => this.toastr.success('Bestelling succesvol geplaats, knallen maar!'),
+      error: () => this.toastr.error('Bestelling plaatsen mislukt, bent u wel ingelogd ?')
+    });
+  }
+
 }

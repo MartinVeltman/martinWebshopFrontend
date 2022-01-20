@@ -56,7 +56,6 @@ export class ShoppingcartComponent implements OnInit {
     for(const item of items){
       price += item.price * item.qty;
 
-
       this.totalPrice = Number(Number(Math.round(price * 100) / 100).toFixed(2));
     }
   }
@@ -69,5 +68,8 @@ export class ShoppingcartComponent implements OnInit {
     }
   }
 
+  placeOrder(orderValue: number){
+    this.itemService.orderItem(JSON.parse(<string>localStorage.getItem('username')), orderValue);
+  }
 
 }
