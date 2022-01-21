@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {authenticationService} from "../authentication/authentication.service";
 
 @Component({
@@ -8,11 +8,17 @@ import {authenticationService} from "../authentication/authentication.service";
   providers: [authenticationService]
 })
 export class UserPageComponent implements OnInit {
+  // @ts-ignore
+  @ViewChild('repPassword') reppassword;
+  // @ts-ignore
+  @ViewChild('newPassword') newpassword;
 
   username = JSON.parse(<string>localStorage.getItem('username'));
   password: string | undefined;
   passwordRepeat: string | undefined;
   ordervalue: number | undefined;
+  isLoggedIn: boolean | undefined;
+
 
 
   constructor(private authService: authenticationService
@@ -20,16 +26,22 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.authService.getOrderValue(this.username);
+    this.isLoggedIn = this.checkLoggedIn();
   }
 
-  ngDoCheck(): void {
-    this.authService.getOrderValue(this.username);
+  ngDoCheck(){
     this.ordervalue = Number(Number(Math.round(JSON.parse(<string>localStorage.getItem('orderValue')) * 100) / 100).toFixed(2));
   }
 
-  changePassword() {
 
+
+  checkLoggedIn(){
+    return !(this.username == null || this.username.length < 1);
+
+  }
+
+  changePassword() {
     this.password = (<HTMLInputElement>(
       document.getElementById('password_Input')
     )).value;
@@ -37,11 +49,18 @@ export class UserPageComponent implements OnInit {
       document.getElementById('passwordRep_Input')
     )).value;
 
+    this.clearPasswordFields()
+
     if (!this.authService.checkPasswords(this.password, this.passwordRepeat)) {
       return;
     }
 
     this.authService.changePassword(this.username, this.password);
+  }
+
+  clearPasswordFields(){
+    this.reppassword.nativeElement.value = '';
+    this.newpassword.nativeElement.value= '';
   }
 
 }

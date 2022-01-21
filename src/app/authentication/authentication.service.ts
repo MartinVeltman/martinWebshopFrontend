@@ -1,11 +1,11 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
-import {ComponentFactoryResolver, Injectable, ViewContainerRef} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {User} from "./user.model";
 import {ToastrService} from "ngx-toastr";
-import {Item} from "../item/item.model";
 import {Router} from "@angular/router";
+
 
 
 @Injectable()
@@ -16,8 +16,10 @@ export class authenticationService {
 
   constructor(private http: HttpClient,
               private toastr: ToastrService,
-              private router: Router
+              private router: Router,
+
   ) {
+
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -78,6 +80,7 @@ export class authenticationService {
     localStorage.setItem('username', JSON.stringify(username));
     this.toastr.success('Succesvol ingelogd');
     this.router.navigate(['/', 'userPanel'])
+
 
   }
 

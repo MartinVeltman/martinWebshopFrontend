@@ -21,6 +21,12 @@ a:hover{
 
 .h2Header{
   margin-right: 30px;
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+input{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 
