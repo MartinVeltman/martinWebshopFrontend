@@ -1,6 +1,4 @@
 .notLoggedIn{
-  justify-content: center;
-  align-content: center;
   text-align: center;
   margin-top: 60px;
 
@@ -9,7 +7,7 @@
 .userPanel {
   margin: auto;
   width: 80%;
-
+  text-align: center;
 }
 
 h2 {
@@ -18,10 +16,13 @@ h2 {
 
 h3 {
   font-size: 3vw;
+  margin-top: 30px;
 }
 
 .changePassword {
-  width: 40%;
+  width: 50%;
+  margin: auto;
+  margin-top: 50px;
 
 }
 
@@ -44,9 +45,9 @@ h3 {
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1000px) {
   h2, h3 {
-    font-size: revert;
+    font-size: 30px;
   }
 }
 

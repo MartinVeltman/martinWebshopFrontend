@@ -63,4 +63,10 @@ export class UserPageComponent implements OnInit {
     this.newpassword.nativeElement.value= '';
   }
 
+  checkOrderValue(){
+    // @ts-ignore
+    return this.ordervalue != undefined && this.ordervalue > 1;
+
+  }
+
 }

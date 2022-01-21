@@ -7,7 +7,6 @@ import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 
 
-
 @Injectable()
 export class authenticationService {
   baseUrl: string = "http://localhost:8080/api/v1";
@@ -17,26 +16,12 @@ export class authenticationService {
   constructor(private http: HttpClient,
               private toastr: ToastrService,
               private router: Router,
-
   ) {
 
   }
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.status === 0) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
-      console.error(`Backend returned code ${error.status}, body was: `, error.error);
-    }
-    // Return an observable with a user-facing error message.
-    return throwError(
-      'Something bad happened; please try again later.');
-  }
 
-  public saveUser(user: User): Observable<User> {
+  public saveUser(user: User) {
     return this.http.post<User>(
       this.baseUrl + "/user/signup"
       , user
@@ -46,9 +31,24 @@ export class authenticationService {
 
         })
       })
-      .pipe(catchError(this.handleError));
+      .subscribe(
+        {
+          next: () => this.registerSucces(),
+          error: () => this.toastr.error('Er is iets fout gegaan bij het aanmaken van het account: '
+          )
+        });
   }
 
+
+  private delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  private async registerSucces() {
+    this.toastr.success('Account succesvol aangemaakt, u wordt doorverwezen naar de inlogpagina binnen 5 seconden');
+    await this.delay(5000);
+    this.router.navigate(['/', 'login'])
+  }
 
   public getUsers(): Observable<User []> {
     return this.http.get<User []>(this.baseUrl + '/users');

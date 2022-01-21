@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
 
 
 
-  checkInputAndCreate() {   //TODO: misschien methode kleiner maken
+  checkInputAndCreate() {
     this.username = (<HTMLInputElement>(
       document.getElementById('username_input')
     )).value;
@@ -76,10 +76,7 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser(user: User) {
-    this.authService.saveUser(user).subscribe({
-      next: () => this.toastrmeassage.success('account succesvol aangemaakt'),
-      error: (err: Error) => this.toastrmeassage.error('Er is iets fout gegaan bij het aanmaken van het account: ' + err),  //TODO: miss meer feedback geven
-    });
+    this.authService.saveUser(user);
   }
 
 }

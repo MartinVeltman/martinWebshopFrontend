@@ -125,9 +125,23 @@ export class itemService {
 
         })
       }).subscribe({
-      next: () => this.toastr.success('Bestelling succesvol geplaats, knallen maar!'), //TODO: winkelmandje legen hier
+      next: () => this.orderSucces(), //TODO: winkelmandje legen hier
       error: () => this.toastr.error('Bestelling plaatsen mislukt, bent u wel ingelogd ?')
     });
+  }
+
+  private delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  private async loadPage() {
+    this.toastr.success('Bestelling succesvol geplaats, knallen maar!');
+    await this.delay(3000);
+    window.location.reload();
+  }
+
+  orderSucces() {
+    this.loadPage();
   }
 
 }
