@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
 
 @Injectable()
 export class authenticationService {
-  baseUrl: string = "http://localhost:8080/api/v1";
+  baseUrl: string = "https://springbootbackend-martin.herokuapp.com/api/v1";
   minPasswordLength: number = 8;
 
 
@@ -33,7 +33,7 @@ export class authenticationService {
       .subscribe(
         {
           next: () => this.registerSucces(),
-          error: () => this.toastr.error('Er is iets fout gegaan bij het aanmaken van het account: '
+          error: () => this.toastr.error('Er is iets fout gegaan bij het aanmaken van het account'
           )
         });
   }
