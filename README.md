@@ -6,4 +6,6 @@
   - je wachtwoord aanpassen
 - In deze webshop kan je als admin:
   - nieuwe producten toevoegen aan het assortiment, een geheime knop leek me niks dus ik heb gekozen dat je gewoon moet navigeren naar /productenToevoegen
-  
+- alles is responsive en is voornamelijk zelf gestyled hier en daar is er gebruik gemaakt van bootstrap
+- Voor invoer op input velden wordt gechecked op de juiste input
+- hoe de website voor de rest werk mag je zelf uitzoeken : )
