@@ -38,6 +38,10 @@ h3 {
   float: right;
 }
 
+label{
+  float: left;
+}
+
 @media (max-width: 900px) {
   .changePassword {
     width: 100%;

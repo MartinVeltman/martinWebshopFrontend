@@ -60,11 +60,7 @@ export class ShoppingcartComponent implements OnInit {
   }
 
   displayCart():boolean{
-    if(this.itemsInCart === null || this.itemsInCart.length < 1){
-      return false;
-    }else {
-      return true;
-    }
+    return !(this.itemsInCart === null || this.itemsInCart.length < 1);
   }
 
   placeOrder(orderValue: number){

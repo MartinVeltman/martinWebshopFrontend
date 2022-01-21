@@ -26,11 +26,8 @@ button {
 input[type="number"] {
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
-  -appearance: textfield;
   width: 70px;
-  align: left;
   align-items: end;
-  text-align: left;
   justify-content: center;
   align-content: center;
   text-align: center;
@@ -61,7 +58,6 @@ input[type="number"] {
   display: grid;
   width: 50%;
   margin: 10px;
-
   grid-column-start: 1;
   grid-column-end: 2;
 

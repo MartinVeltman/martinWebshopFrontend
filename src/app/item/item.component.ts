@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Item} from "./item.model";
 import {itemService} from "./item.service";
 import {ToastrService} from "ngx-toastr";

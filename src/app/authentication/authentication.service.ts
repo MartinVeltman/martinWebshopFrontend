@@ -1,7 +1,6 @@
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {Observable, throwError} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 import {User} from "./user.model";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
@@ -10,7 +9,7 @@ import {Router} from "@angular/router";
 @Injectable()
 export class authenticationService {
   baseUrl: string = "http://localhost:8080/api/v1";
-  minPasswordLength: number = 4;
+  minPasswordLength: number = 8;
 
 
   constructor(private http: HttpClient,
@@ -39,17 +38,6 @@ export class authenticationService {
         });
   }
 
-
-  private delay(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  private async registerSucces() {
-    this.toastr.success('Account succesvol aangemaakt, u wordt doorverwezen naar de inlogpagina binnen 5 seconden');
-    await this.delay(5000);
-    this.router.navigate(['/', 'login'])
-  }
-
   public getUsers(): Observable<User []> {
     return this.http.get<User []>(this.baseUrl + '/users');
 
@@ -69,7 +57,7 @@ export class authenticationService {
         )
       }).subscribe({
       next: (jwtToken: any) => this.loginSucces(jwtToken, username),
-      error: err => this.toastr.error('De inloggegevens zijn onjuist')
+      error: () => this.toastr.error('De inloggegevens zijn onjuist')
     });
 
 
@@ -79,7 +67,7 @@ export class authenticationService {
     localStorage.setItem('jwtKey', JSON.stringify(data));
     localStorage.setItem('username', JSON.stringify(username));
     this.toastr.success('Succesvol ingelogd');
-    this.router.navigate(['/', 'userPanel'])
+    this.router.navigate(['/', 'userPanel']);
 
 
   }
@@ -114,6 +102,16 @@ export class authenticationService {
   public getOrderValue(username: String) {
     return this.http.get(this.baseUrl + `/user/getOrderValue?username=${username}`)
       .subscribe(ordervalue => localStorage.setItem('orderValue', JSON.stringify(ordervalue)));
+  }
+
+  private delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  private async registerSucces() {
+    this.toastr.success('Account succesvol aangemaakt, u wordt doorverwezen naar de inlogpagina binnen 5 seconden');
+    await this.delay(5000);
+    this.router.navigate(['/', 'login']);
   }
 
 

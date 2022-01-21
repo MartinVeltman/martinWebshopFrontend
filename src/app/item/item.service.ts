@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable, Output} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {Item} from "./item.model";
 import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
@@ -51,7 +51,6 @@ export class itemService {
   }
 
   addItemToCart(item: Item) {
-    console.log(item)
     const product = JSON.parse(<any>localStorage.getItem('cart'));
     let productExist: Item;
 
@@ -88,7 +87,6 @@ export class itemService {
   }
 
   setCartData(data: any) {
-    console.log(data)
     localStorage.setItem('cart', JSON.stringify(data));
   }
 

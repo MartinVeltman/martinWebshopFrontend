@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-a:hover{
+a:hover {
   cursor: pointer;
 }
 
-.navbar-custom{
+.navbar-custom {
   background-color: #F6CD13;
 
 }
@@ -14,30 +14,30 @@ a:hover{
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.btn-primary:hover, .btn-primary:focus{
+.btn-primary:hover, .btn-primary:focus {
   background-color: #F6CD13;
   border-color: #F6CD13;
 }
 
-.h2Header{
+.h2Header {
   margin-right: 30px;
   font-size: 30px;
   font-weight: bolder;
 }
 
-.h2Header:hover{
+.h2Header:hover {
   cursor: pointer;
 }
 
-.h2A{
+.h2A {
   text-decoration: none;
 }
 
-input{
+input {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.regenboog{
+.regenboog {
   margin-top: 0px;
   margin-bottom: 10px;
   background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);
