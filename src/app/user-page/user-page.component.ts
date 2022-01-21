@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {authenticationService} from "../authentication/authentication.service";
 
 @Component({
@@ -16,18 +16,19 @@ export class UserPageComponent implements OnInit {
 
 
   constructor(private authService: authenticationService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
 
   }
 
-  ngDoCheck(): void{
+  ngDoCheck(): void {
     this.authService.getOrderValue(this.username);
     this.ordervalue = Number(Number(Math.round(JSON.parse(<string>localStorage.getItem('orderValue')) * 100) / 100).toFixed(2));
   }
 
-  changePassword(){
+  changePassword() {
 
     this.password = (<HTMLInputElement>(
       document.getElementById('password_Input')

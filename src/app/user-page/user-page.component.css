@@ -1,52 +1,55 @@
-.userPanel{
+.userPanel {
   margin: auto;
   width: 80%;
 
 }
 
-h2{
+h2 {
   font-size: 3vw;
 }
 
-h3{
+h3 {
   font-size: 3vw;
 }
-.changePassword{
+
+.changePassword {
   width: 40%;
 
 }
-.changePasswordBtn, .orderItemsBtn{
+
+.changePasswordBtn, .orderItemsBtn {
   margin-bottom: 10px;
   margin-top: 10px;
   max-font-size: 20px;
   font-size: 3vw;
 
 }
-.changePasswordBtn{
+
+.changePasswordBtn {
   float: right;
 }
 
-@media (max-width: 900px){
-  .changePassword{
+@media (max-width: 900px) {
+  .changePassword {
     width: 100%;
 
   }
 }
 
-@media (min-width: 900px){
-  h2, h3{
+@media (min-width: 900px) {
+  h2, h3 {
     font-size: revert;
   }
 }
 
-@media (min-width: 400px){
+@media (min-width: 400px) {
   .changePasswordBtn, .orderItemsBtn {
     font-size: revert;
   }
 }
 
 @media (max-width: 615px) {
-  h2, h3{
+  h2, h3 {
     font-size: large;
   }
 }
