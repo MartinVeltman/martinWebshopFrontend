@@ -30,7 +30,7 @@
                (blur)="validateInput($event, i)">
       </div>
       <div class="itemSubtotal">
-        <p>€ {{item.price * item.qty}} </p>
+        <p>{{item.price * item.qty | currency :'EUR':'symbol':'1.2-2'}} </p>
       </div>
       <div class="remove-btnDiv">
         <img src="https://cdn-icons-png.flaticon.com/512/1017/1017530.png"  id="removeButton" (click)="deleteItem(i)">
