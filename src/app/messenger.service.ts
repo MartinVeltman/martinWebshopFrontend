@@ -13,7 +13,6 @@ export class messengerService{
 
   sendMsg(item: Item){
     this.subject.next(item);
-    console.log(item);
   }
 
   getMsg(){

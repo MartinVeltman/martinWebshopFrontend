@@ -6,6 +6,7 @@ import {ItemComponent} from "./item/item.component";
 import {AuthenticationComponent} from "./authentication/authentication.component";
 import {RegisterComponent} from "./authentication/register/register.component";
 import {AdminPanelComponent} from "./admin-panel/admin-panel.component";
+import {UserPageComponent} from "./user-page/user-page.component";
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'productenToevoegen',
     component: AdminPanelComponent
+  },
+  {
+    path: 'userPanel',
+    component: UserPageComponent
   }
 ];
 

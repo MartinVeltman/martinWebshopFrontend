@@ -18,14 +18,13 @@ export class ShoppingcartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.itemService.getCart());
     // @ts-ignore
     this.itemsInCart = this.itemService.getCart();
 
   }
 
   ngDoCheck(){
-    if(this.itemsInCart.length > 0){
+    if( this.itemsInCart != null && this.itemsInCart.length > 0){
       this.getTotal(this.itemsInCart);
     }
   }
@@ -70,6 +69,7 @@ export class ShoppingcartComponent implements OnInit {
 
   placeOrder(orderValue: number){
     this.itemService.orderItem(JSON.parse(<string>localStorage.getItem('username')), orderValue);
+    localStorage.removeItem('cart')
   }
 
 }

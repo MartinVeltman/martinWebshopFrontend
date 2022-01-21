@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   password: string | undefined;
   passwordRepeat: string | undefined;
   emailsArray: any | undefined;
-  minPasswordLength: number = 4;
+
 
 
   constructor(private authService: authenticationService,
@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
 
 
 
-  CheckInput() {   //TODO: misschien methode kleiner maken
+  checkInputAndCreate() {   //TODO: misschien methode kleiner maken
     this.username = (<HTMLInputElement>(
       document.getElementById('username_input')
     )).value;
@@ -50,12 +50,11 @@ export class RegisterComponent implements OnInit {
     );
 
     if (!this.checkEmail()) {
-      this.toastrmeassage.error('voer een geldige email in')
+      this.toastrmeassage.error('voer een geldige email in');
       return;
     }
 
-    if (!this.checkPasswords(this.password, this.passwordRepeat)) {
-      console.log('wachtwoorden niet overeen of te kort')
+    if (!this.authService.checkPasswords(this.password, this.passwordRepeat)) {
       return;
     }
 
@@ -70,34 +69,17 @@ export class RegisterComponent implements OnInit {
     this.registerUser(this.user);
   }
 
-  checkPasswords(password: string, passwordRepeat: string): boolean {
-    if (password === passwordRepeat && password.length >= this.minPasswordLength) {
-      return true;
-    } else if (password !== passwordRepeat) {
-      this.toastrmeassage.error('wachtwoorden komen niet overeen');
-    } else if (password.length < this.minPasswordLength) {
-      this.toastrmeassage.error("Het wachtwoord moet minimaal " + this.minPasswordLength + " karakters lang zijn");
-    } else {
-      this.toastrmeassage.error('Er is een onbekende fout opgetreden bij het aanmaken van je account. Probeer het later opnieuw.');
-    }
-    return false;
-  }
+
 
   checkEmail(): boolean {
     return this.emailsArray != null && this.emailsArray.length;
   }
 
   registerUser(user: User) {
-    console.log(user);
     this.authService.saveUser(user).subscribe({
       next: () => this.toastrmeassage.success('account succesvol aangemaakt'),
-      error: () => this.toastrmeassage.error('Er is iets fout gegaan bij het aanmaken van het account'),  //TODO: miss meer feedback geven
+      error: (err: Error) => this.toastrmeassage.error('Er is iets fout gegaan bij het aanmaken van het account: ' + err),  //TODO: miss meer feedback geven
     });
-
-  //   VOOOR MEER FEEDBACK HIERBOVENerror: err => {
-  //     if (err.status === 403 || err.status === 400) {
-  //       this.loginError = true;
-  //     }
   }
 
 }
