@@ -10,73 +10,49 @@ import {ToastrService} from "ngx-toastr";
   providers: [authenticationService],
 })
 export class RegisterComponent implements OnInit {
-  // @ts-ignore
-  user = new User();
 
-  email: string | undefined;
-  username: string | undefined;
-  password: string | undefined;
-  passwordRepeat: string | undefined;
+  user = {} as User;
   emailsArray: any | undefined;
 
-
-
   constructor(private authService: authenticationService,
-              private toastrmeassage: ToastrService
+              private toastr: ToastrService
   ) {
   }
 
   ngOnInit(): void {
   }
 
+  createUser(username: string, email: string, password: string, passwordRepeat: string) {
+    this.user.username = username;
+    this.user.email = email;
+    this.user.password = password;
 
+    this.validateUser(email, password, passwordRepeat)
+  }
 
-
-  checkInputAndCreate() {
-    this.username = (<HTMLInputElement>(
-      document.getElementById('username_input')
-    )).value;
-    this.email = (<HTMLInputElement>(
-      document.getElementById('email_Input')
-    )).value;
-    this.password = (<HTMLInputElement>(
-      document.getElementById('password_Input')
-    )).value;
-    this.passwordRepeat = (<HTMLInputElement>(
-      document.getElementById('passwordRep_Input')
-    )).value;
-    this.emailsArray = this.email.match(
+  validateUser(email: string, password: string, passwordRepeat: string) {
+    this.emailsArray = email.match(
       /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi
     );
 
     if (!this.checkEmail()) {
-      this.toastrmeassage.error('voer een geldige email in');
+      this.toastr.error('voer een geldige email in');
       return;
     }
 
-    if (!this.authService.checkPasswords(this.password, this.passwordRepeat)) {
+    if (!this.authService.checkPasswords(password, passwordRepeat)) {
       return;
     }
 
-    this.createUser(this.username, this.email, this.password);
-
+    this.registerUser();
   }
-
-  createUser(username: string, email: string, password: string) {
-    this.user.username = username;
-    this.user.email = email;
-    this.user.password = password;
-    this.registerUser(this.user);
-  }
-
-
 
   checkEmail(): boolean {
     return this.emailsArray != null && this.emailsArray.length;
   }
 
-  registerUser(user: User) {
-    this.authService.saveUser(user);
+  registerUser() {
+    this.authService.saveUser(this.user);
   }
 
 }
