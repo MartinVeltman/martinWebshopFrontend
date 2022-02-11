@@ -66,7 +66,6 @@ export class ShoppingcartComponent implements OnInit {
     this.itemService.orderItem(JSON.parse(<string>localStorage.getItem('username')), orderValue);
     localStorage.removeItem('cart')
 
-
   }
 
 }

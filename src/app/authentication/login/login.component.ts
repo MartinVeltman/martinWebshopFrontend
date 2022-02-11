@@ -10,11 +10,10 @@ import {ToastrService} from "ngx-toastr";
   providers: [authenticationService]
 })
 export class LoginComponent implements OnInit {
-  // @ts-ignore
-  user = new User();
 
-  username: string | undefined;
-  password: string | undefined;
+
+  private username: string | undefined;
+  private password: string | undefined;
 
   constructor(private authService: authenticationService,
               private toastr: ToastrService
@@ -40,7 +39,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    // @ts-ignore
+
     this.authService.login(this.username, this.password);
 
   }

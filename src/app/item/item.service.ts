@@ -10,7 +10,8 @@ import {ToastrService} from "ngx-toastr";
 })
 export class itemService {
 
-  baseUrl: string = "https://springbootbackend-martin.herokuapp.com/api/v1";
+  // baseUrl: string = "https://springbootbackend-martin.herokuapp.com/api/v1"; TODO: weghalen wanneer app wordt geployed
+  baseUrl: string = "http://localhost:8080/api/v1";
 
   items: Item[] = [];
 
@@ -90,12 +91,24 @@ export class itemService {
     localStorage.setItem('cart', JSON.stringify(data));
   }
 
+  getJwtToken() {
+    if (localStorage.getItem('jwtKey') != null || localStorage.getItem('jwtKey') != undefined) {
+      const token = Object.values(JSON.parse(<string>localStorage.getItem('jwtKey'))).toString();
+      return token;
+    } else {
+      this.toastr.info('Je bent niet ingelogd')
+      return false;
+    }
+  }
+
   public createNewItem(item: Item) {
-    // @ts-ignore
-    const token = Object.values(JSON.parse(localStorage.getItem('jwtKey'))).toString();
+
+    if(!this.getJwtToken()){
+      return;
+    }
 
     let options = {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.getJwtToken())
     }
 
     return this.http.post<Item>(
@@ -110,7 +123,7 @@ export class itemService {
   }
 
   public getItemsFromDB(): Observable<Item []> {
-    return this.http.get<Item []>(this.baseUrl + "/user/getItems");
+    return this.http.get<Item []>(this.baseUrl + "/getItems");
 
   }
 

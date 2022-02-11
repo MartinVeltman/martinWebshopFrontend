@@ -8,7 +8,8 @@ import {Router} from "@angular/router";
 
 @Injectable()
 export class authenticationService {
-  baseUrl: string = "https://springbootbackend-martin.herokuapp.com/api/v1";
+  // baseUrl: string = "https://springbootbackend-martin.herokuapp.com/api/v1";
+  baseUrl: string = "http://localhost:8080/api/v1";
   minPasswordLength: number = 8;
 
 
@@ -43,7 +44,7 @@ export class authenticationService {
 
   }
 
-  public login(username: string, password: string) {
+  public login(username: string | undefined, password: string | undefined) {
     localStorage.removeItem('jwtKey');
 
     return this.http.post(this.baseUrl + '/user/signin',
@@ -63,7 +64,7 @@ export class authenticationService {
 
   }
 
-  loginSucces(data: any, username: string) {
+  loginSucces(data: any, username: string | undefined) {
     localStorage.setItem('jwtKey', JSON.stringify(data));
     localStorage.setItem('username', JSON.stringify(username));
     this.toastr.success('Succesvol ingelogd');

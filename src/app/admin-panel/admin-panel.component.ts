@@ -11,9 +11,7 @@ import {ToastrService} from "ngx-toastr";
   providers: [itemService]
 })
 export class AdminPanelComponent implements OnInit {
-
-  // @ts-ignore
-  item = new Item();
+  item =  {} as Item;
 
   constructor(private itemservice: itemService,
               private toastr: ToastrService
