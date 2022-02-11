@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {itemService} from "./item/item.service";
 
-// @ts-ignore
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

@@ -55,7 +55,7 @@ export class itemService {
     const product = JSON.parse(<any>localStorage.getItem('cart'));
     let productExist: Item | undefined;
 
-    if(item == undefined){
+    if (item == undefined) {
       return;
     }
 

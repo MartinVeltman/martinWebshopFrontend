@@ -18,25 +18,23 @@ export class ShoppingcartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // @ts-ignore
     this.itemsInCart = this.itemService.getCart();
-
   }
 
-  ngDoCheck(){
-    if( this.itemsInCart != null && this.itemsInCart.length > 0){
+  ngDoCheck() {
+    if (this.itemsInCart != null && this.itemsInCart.length > 0) {
       this.getTotal(this.itemsInCart);
     }
   }
 
-  deleteItem(index: number){
+  deleteItem(index: number) {
     this.itemsInCart.splice(index, 1);
     this.itemService.setCartData(this.itemsInCart);
   }
 
-  validateInput(event: any, index:number){
+  validateInput(event: any, index: number) {
     const qty = +event.target.value;
-    if(qty < 1){
+    if (qty < 1) {
       event.target.value = this.itemsInCart[index].qty;
       return;
     }
@@ -44,25 +42,25 @@ export class ShoppingcartComponent implements OnInit {
     this.qtyUpdate(qty, index)
   }
 
-  private qtyUpdate(qty: number, index:number){
+  private qtyUpdate(qty: number, index: number) {
     this.itemsInCart[index].qty = qty;
     this.itemService.setCartData(this.itemsInCart);
 
   }
 
-  getTotal(items: Item[]){
+  getTotal(items: Item[]) {
     let price = 0;
-    for(const item of items){
+    for (const item of items) {
       price += item.price * item.qty;
       this.totalPrice = Number(Number(Math.round(price * 100) / 100).toFixed(2));
     }
   }
 
-  displayCart():boolean{
+  displayCart(): boolean {
     return !(this.itemsInCart === null || this.itemsInCart.length < 1);
   }
 
-  placeOrder(orderValue: number){
+  placeOrder(orderValue: number) {
     this.itemService.orderItem(JSON.parse(<string>localStorage.getItem('username')), orderValue);
     localStorage.removeItem('cart')
 
