@@ -11,10 +11,6 @@ import {ToastrService} from "ngx-toastr";
 })
 export class LoginComponent implements OnInit {
 
-
-  private username: string | undefined;
-  private password: string | undefined;
-
   constructor(private authService: authenticationService,
               private toastr: ToastrService
   ) {
@@ -23,34 +19,22 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getLoginCredentials() {
-    this.username = (<HTMLInputElement>(
-      document.getElementById('username_input')
-    )).value;
-    this.password = (<HTMLInputElement>(
-      document.getElementById('password_input')
-    )).value;
-  }
 
-  login() {
-    this.getLoginCredentials()
-
-    if (!this.validInputCheck()) {
+  login(username: string, password: string) {
+    if (!this.validInputCheck(username, password)) {
       return;
     }
 
-
-    this.authService.login(this.username, this.password);
-
+    this.authService.login(username, password);
   }
 
-  validInputCheck() {
-    if (this.username === undefined || this.username.length < 1) {
+  validInputCheck(username: string, password: string) {
+    if (username === undefined || username.length < 1) {
       this.toastr.error('Voer een gebruikersnaam in')
       return false;
     }
 
-    if (this.password === undefined || this.password.length < 1) {
+    if (password === undefined || password.length < 1) {
       this.toastr.error('Voer een wachtwoord in')
       return false;
     }

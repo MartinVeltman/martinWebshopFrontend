@@ -4,16 +4,16 @@
     <div class="row">
       <div class="form-group">
         <label for="username_Input">Gebruikersnaam</label>
-        <input class="form-control" id="username_input" placeholder="Voer uw gebruikersnaam in">
+        <input class="form-control" id="username_input" placeholder="Voer uw gebruikersnaam in" #username>
       </div>
       <div class="form-group">
         <label for="password_input">Wachtwoord</label>
-        <input type="password" class="form-control" id="password_input" placeholder="Voer uw wachtwoord in">
+        <input type="password" class="form-control" id="password_input" placeholder="Voer uw wachtwoord in" #password>
       </div>
     </div>
   </form>
   <a class="btn btn-primary" routerLink="/registreren">Registreren</a>
-  <button class="btn btn-primary" (click)="login()">Inloggen</button>
+  <button class="btn btn-primary" (click)="login(username.value, password.value)">Inloggen</button>
 </div>
 
 
