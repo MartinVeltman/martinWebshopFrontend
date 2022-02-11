@@ -8,17 +8,13 @@ import {authenticationService} from "../authentication/authentication.service";
   providers: [authenticationService]
 })
 export class UserPageComponent implements OnInit {
-  // @ts-ignore
-  @ViewChild('repPassword') reppassword;
-  // @ts-ignore
-  @ViewChild('newPassword') newpassword;
+
+  @ViewChild('newPassword') newPassword: any;
+  @ViewChild('repPassword') repPassword: any;
 
   username = JSON.parse(<string>localStorage.getItem('username'));
-  password: string | undefined;
-  passwordRepeat: string | undefined;
   ordervalue: number | undefined;
   isLoggedIn: boolean | undefined;
-
 
 
   constructor(private authService: authenticationService
@@ -30,43 +26,33 @@ export class UserPageComponent implements OnInit {
     this.isLoggedIn = this.checkLoggedIn();
   }
 
-  ngDoCheck(){
-    this.ordervalue = Number(Number(Math.round(JSON.parse(<string>localStorage.getItem('orderValue')) * 100) / 100).toFixed(2));
+  ngDoCheck() {
+    this.ordervalue = Number(Number(Math.round(JSON.parse(<string>localStorage.getItem('orderValue'))
+      * 100) / 100).toFixed(2));
   }
 
 
-
-  checkLoggedIn(){
+  checkLoggedIn() {
     return !(this.username == null || this.username.length < 1);
-
   }
 
-  changePassword() {
-    this.password = (<HTMLInputElement>(
-      document.getElementById('password_Input')
-    )).value;
-    this.passwordRepeat = (<HTMLInputElement>(
-      document.getElementById('passwordRep_Input')
-    )).value;
+  changePassword(password: string, passwordRepeat: string) {
 
-    this.clearPasswordFields()
-
-    if (!this.authService.checkPasswords(this.password, this.passwordRepeat)) {
+    if (!this.authService.checkPasswords(password, passwordRepeat)) {
       return;
     }
+    this.clearPasswordFields();
 
-    this.authService.changePassword(this.username, this.password);
+    this.authService.changePassword(this.username, password);
   }
 
-  clearPasswordFields(){
-    this.reppassword.nativeElement.value = '';
-    this.newpassword.nativeElement.value= '';
+  clearPasswordFields() {
+    this.newPassword.nativeElement.value = '';
+    this.repPassword.nativeElement.value = '';
   }
 
-  checkOrderValue(){
-    // @ts-ignore
+  checkOrderValue() {
     return this.ordervalue != undefined && this.ordervalue > 1;
-
   }
 
 }

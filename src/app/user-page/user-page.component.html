@@ -28,7 +28,10 @@
                id="passwordRep_Input"
                placeholder="Herhaal het ingevoerde wachtwoord">
       </div>
+      <button type="button" class="btn btn-primary changePasswordBtn" (click)="changePassword(newPassword.value, repPassword.value)" >
+        Verander wachtwoord
+      </button>
     </form>
-    <button class="btn btn-primary changePasswordBtn" (click)="changePassword()">Verander wachtwoord</button>
+
   </div>
 </div>
