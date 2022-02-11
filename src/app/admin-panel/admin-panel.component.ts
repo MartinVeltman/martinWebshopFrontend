@@ -21,25 +21,16 @@ export class AdminPanelComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getItem() {
-    this.item.name = (<HTMLInputElement>(
-      document.getElementById('itemName')
-    )).value;
+  getInputItem(name: string, description: string, price: string, imagePath: string) {
+    this.item.name = name;
+    this.item.description = description;
+    this.item.price = Number(price);
+    this.item.imagePath = imagePath;
 
-    this.item.description = (<HTMLInputElement>(
-      document.getElementById('itemDescription')
-    )).value;
-
-    this.item.price = parseFloat((<HTMLInputElement>
-      document.getElementById("itemPrice")).value);
-
-    this.item.imagePath = (<HTMLInputElement>(
-      document.getElementById('itemFotoUrl')
-    )).value;
+    this.addItem();
   }
 
   addItem() {
-    this.getItem();
 
     if (!this.validInput()) {
       return

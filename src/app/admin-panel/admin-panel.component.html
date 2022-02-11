@@ -4,29 +4,33 @@
     <div class="row">
       <div class="col">
         <label for="itemName">Product naam</label>
-        <input class="form-control" id="itemName" placeholder="Voer hier de product naam in">
+        <input class="form-control" id="itemName" placeholder="Voer hier de product naam in" #name>
       </div>
 
       <div class="form-group">
         <label for="itemDescription">Product beschrijving</label>
         <input class="form-control" id="itemDescription" maxlength="210"
-               placeholder="Voer hier de product beschrijving in">
+               placeholder="Voer hier de product beschrijving in" #description>
 
       </div>
 
       <div class="form-group">
         <label for="itemPrice">Prijs</label>
-        <input type="number" class="form-control" id="itemPrice" placeholder="Voer hier de prijs van het product in">
+        <input type="number" class="form-control" id="itemPrice" placeholder="Voer hier de prijs van het product in"
+               #price>
       </div>
 
       <div class="form-group">
         <label for="itemFotoUrl">Foto Url</label>
         <input type="url" class="form-control" id="itemFotoUrl"
-               placeholder="Voer hier een url naar de foto van het product in">
+               placeholder="Voer hier een url naar de foto van het product in" #imagePath>
       </div>
 
     </div>
 
   </form>
-  <button type="button" class="btn btn-primary" (click)="addItem()">Item Toevoegen</button>
+  <button type="button" class="btn btn-primary"
+          (click)="getInputItem(name.value, description.value, price.value, imagePath.value)">
+    Item Toevoegen
+  </button>
 </div>
