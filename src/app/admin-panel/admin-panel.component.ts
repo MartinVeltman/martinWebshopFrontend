@@ -40,17 +40,20 @@ export class AdminPanelComponent implements OnInit {
 
   addItem() {
     this.getItem();
+
     if (!this.validInput()) {
       return
     }
 
     this.itemservice.createNewItem(this.item);
-
   }
 
   validInput(): boolean {
     if (this.item.name.length <= 1 || this.item.description.length <= 3 || this.item.imagePath.length <= 6 || isNaN(this.item.price)) {
       this.toastr.error('Vul alle velden correct in');
+      return false;
+    } else if(this.item.price <= 0){
+      this.toastr.error('Je bent sinterklaas niet?!');
       return false;
     }
 
