@@ -22,7 +22,7 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.getOrderValue(this.username);
+    this.authService.getOrderValue();
     this.isLoggedIn = this.checkLoggedIn();
   }
 

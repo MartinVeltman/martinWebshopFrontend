@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {User} from "./user.model";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
+import {itemService} from "../item/item.service";
 
 
 @Injectable()
@@ -16,6 +17,7 @@ export class authenticationService {
   constructor(private http: HttpClient,
               private toastr: ToastrService,
               private router: Router,
+              private itemService: itemService
   ) {
 
   }
@@ -100,8 +102,16 @@ export class authenticationService {
     });
   }
 
-  public getOrderValue(username: String) {
-    return this.http.get(this.baseUrl + `/user/getOrderValue?username=${username}`)
+  public getOrderValue() {
+    if (!this.itemService.getJwtToken()) {
+      return;
+    }
+
+    let options = {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.itemService.getJwtToken())
+    }
+
+    return this.http.get(this.baseUrl + `/user/getOrderValue`, options)
       .subscribe(ordervalue => localStorage.setItem('orderValue', JSON.stringify(ordervalue)));
   }
 
