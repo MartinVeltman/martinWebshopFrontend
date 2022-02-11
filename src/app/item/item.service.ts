@@ -51,9 +51,13 @@ export class itemService {
       item.id === id);
   }
 
-  addItemToCart(item: Item) {
+  addItemToCart(item: Item | undefined) {
     const product = JSON.parse(<any>localStorage.getItem('cart'));
     let productExist: Item | undefined;
+
+    if(item == undefined){
+      return;
+    }
 
     if (product) { //kijkt of de item die je toevoegd al bestaat
       productExist = product.find((product: { id: number; }) => {

@@ -11,7 +11,7 @@ import {authenticationService} from "../authentication/authentication.service";
   providers: [itemService, authenticationService]
 })
 export class ItemComponent implements OnInit {
-  items: Item[] = [];
+  items: Item[]= [];
 
 
   constructor(private itemService: itemService, private toastr: ToastrService) {
@@ -29,7 +29,6 @@ export class ItemComponent implements OnInit {
 
 
   addToCart(id: number) {
-    // @ts-ignore
     this.itemService.addItemToCart(this.items.find(e => e.id === id));
     this.toastr.success('Product aan winkelmand toegevoegd');
   }
