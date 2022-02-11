@@ -18,7 +18,7 @@ export class itemService {
   shoppingCartAmount: number = 0;
   numOfItems = new BehaviorSubject([])
   storedCart: Item[] = [];
-  placeholder = [];
+  placeholder: Item[] = [];
 
   subject = new Subject();
 
@@ -53,14 +53,14 @@ export class itemService {
 
   addItemToCart(item: Item) {
     const product = JSON.parse(<any>localStorage.getItem('cart'));
-    let productExist: Item;
+    let productExist: Item | undefined;
 
     if (product) { //kijkt of de item die je toevoegd al bestaat
       productExist = product.find((product: { id: number; }) => {
         return product.id === item.id
       })
     }
-    // @ts-ignore
+
     if (productExist) {  //als deze al bestaat verhoog alleen de qty
       productExist.qty++;
       this.setCartData(product);
@@ -71,20 +71,15 @@ export class itemService {
         this.setCartData(newData)
         this.numOfItems.next(JSON.parse(<any>localStorage.getItem('cart')))
       } else {
-        // @ts-ignore
         this.placeholder.push(item);  //als er geen data is maak een nieuw array en stuur het
         this.setCartData(this.placeholder)
-        this.numOfItems.next(this.placeholder);
-
       }
     }
 
   }
 
   getCart(): Item[] {
-    // @ts-ignore
-    return JSON.parse(localStorage.getItem('cart'));
-
+    return JSON.parse(<any>localStorage.getItem('cart'));
   }
 
   setCartData(data: any) {
@@ -103,7 +98,7 @@ export class itemService {
 
   public createNewItem(item: Item) {
 
-    if(!this.getJwtToken()){
+    if (!this.getJwtToken()) {
       return;
     }
 
