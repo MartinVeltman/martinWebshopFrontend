@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <div class="registerForm">
   <h2>Nieuw account aan maken</h2>
   <form class="row">
@@ -20,7 +21,7 @@
              placeholder="Herhaal het ingevoerde wachtwoord" #passwordRepeat>
     </div>
   </form>
-  <a class="btn btn-primary" routerLink="/login">Terug</a>
+  <a class="btn btn-primary" href="/login">Terug</a>
   <button type="button" class="btn btn-primary"
           (click)="createUser(username.value, email.value, password.value, passwordRepeat.value )">Registreren
   </button>

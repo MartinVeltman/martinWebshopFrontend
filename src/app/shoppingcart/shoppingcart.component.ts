@@ -66,4 +66,8 @@ export class ShoppingcartComponent implements OnInit {
 
   }
 
+  navigateToWebshop() {
+    this.itemService.navigateToWebshop();
+  };
+
 }

@@ -6,7 +6,7 @@
 <body class="cartBody">
 <div class="empty" *ngIf="!displayCart()">
   <h4>Geen items in je winkelwagen</h4>
-  <button routerLink="" class="btn btn-success">Vuurwerk kopen</button>
+  <button (click)="navigateToWebshop()" class="btn btn-success">Vuurwerk kopen</button>
 </div>
 
 <div class="" *ngIf="displayCart()">

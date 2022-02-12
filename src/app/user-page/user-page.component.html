@@ -5,7 +5,7 @@
 
 <div *ngIf="isLoggedIn == true" class="userPanel">
   <h2>Welkom {{username}}, u bent ingelogd en kunt bestellen</h2>
-  <button routerLink="" class="btn btn-success orderItemsBtn">Vuurwerk bestellen</button>
+  <button (click)="navigateToWebshop()" class="btn btn-success orderItemsBtn">Vuurwerk bestellen</button>
 
   <div class="moneySpend" *ngIf="checkOrderValue()">
     <h3>U hebt al <span class="regenboog">{{ordervalue  | currency :'EUR':'symbol':'1.2-2'}}</span> bij ons uitgegeven,

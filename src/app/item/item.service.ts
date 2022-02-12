@@ -3,7 +3,7 @@ import {Item} from "./item.model";
 import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
-import {stringify} from "@angular/compiler/src/util";
+import {Router} from "@angular/router";
 
 
 @Injectable({
@@ -25,7 +25,8 @@ export class itemService {
 
 
   constructor(private http: HttpClient,
-              private toastr: ToastrService
+              private toastr: ToastrService,
+              private router: Router
   ) {
     const product = JSON.parse(<any>localStorage.getItem('cart'));   //kijkt of er data is in localstorage
     if (product) {
@@ -162,5 +163,9 @@ export class itemService {
   orderSucces() {
     this.loadPage();
   }
+
+  navigateToWebshop() {
+    this.router.navigate(['/webshop']);
+  };
 
 }

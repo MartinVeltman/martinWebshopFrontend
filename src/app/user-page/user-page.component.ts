@@ -1,11 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {authenticationService} from "../authentication/authentication.service";
+import {itemService} from "../item/item.service";
+
 
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.css'],
-  providers: [authenticationService]
+  providers: [authenticationService, itemService]
 })
 export class UserPageComponent implements OnInit {
 
@@ -17,7 +19,8 @@ export class UserPageComponent implements OnInit {
   isLoggedIn: boolean | undefined;
 
 
-  constructor(private authService: authenticationService
+  constructor(private authService: authenticationService,
+              private itemservice: itemService
   ) {
   }
 
@@ -54,5 +57,9 @@ export class UserPageComponent implements OnInit {
   checkOrderValue() {
     return this.ordervalue != undefined && this.ordervalue > 1;
   }
+
+  navigateToWebshop() {
+    this.itemservice.navigateToWebshop();
+  };
 
 }
