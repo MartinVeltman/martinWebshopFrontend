@@ -1,32 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { ItemComponent } from './item/item.component';
-import { ShoppingcartComponent } from './shoppingcart/shoppingcart.component';
-import { LoginComponent } from './authentication/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import {RouterModule} from "@angular/router";
 import {itemService} from "./item/item.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { RegisterComponent } from './authentication/register/register.component';
-import { AuthenticationComponent } from './authentication/authentication.component';
 import {HttpClientModule} from "@angular/common/http";
-import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-import { UserPageComponent } from './user-page/user-page.component';
+import {ItemModule} from "./item/item.module";
+import {UserPageModule} from "./user-page/user-page.module";
+import {ShoppingcartModule} from "./shoppingcart/shoppingcart.module";
+import {AuthenticationModule} from "./authentication/authentication.module";
+import {AdminPanelModule} from "./admin-panel/admin-panel.module";
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ItemComponent,
-    ShoppingcartComponent,
-    LoginComponent,
-    RegisterComponent,
-    AuthenticationComponent,
-    AdminPanelComponent,
-    UserPageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +25,12 @@ import { UserPageComponent } from './user-page/user-page.component';
     RouterModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    ItemModule,
+    UserPageModule,
+    ShoppingcartModule,
+    AuthenticationModule,
+    AdminPanelModule
   ],
   providers: [itemService, HttpClientModule],
   bootstrap: [AppComponent]

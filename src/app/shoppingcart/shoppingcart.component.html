@@ -39,7 +39,7 @@
   </div>
   <div class="card" id="price">
     <h2 class="priceText">Totaalbedrag: </h2>
-    <h2 class="totalPrice">€ {{totalPrice}}</h2>
+    <h2 class="totalPrice">{{totalPrice | currency :'EUR':'symbol':'1.2-2'}}</h2>
   </div>
   <div class="order">
   <button class="btn btn-success orderBtn" (click)="placeOrder(totalPrice)">Bestellen</button>

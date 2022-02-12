@@ -11,7 +11,7 @@
         >
         <h5 class="card-title itemTitle" style="height: 70px">{{item.name}}</h5>
         <p class="card-text itemDesc" style="height: 100px">{{item.description}}</p>
-        <p class="itemPrice">€ {{item.price}}</p>
+        <p class="itemPrice">{{item.price | currency :'EUR':'symbol':'1.2-2'}}</p>
         <a class="btn btn-primary itemToCartButton" (click)="addToCart(item.id)">Voeg toe aan winkelmand</a>
       </div>
     </div>

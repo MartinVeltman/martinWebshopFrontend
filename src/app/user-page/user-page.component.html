@@ -8,8 +8,9 @@
   <button routerLink="" class="btn btn-success orderItemsBtn">Vuurwerk bestellen</button>
 
   <div class="moneySpend" *ngIf="checkOrderValue()">
-    <h3>U hebt al € <span class="regenboog">{{ordervalue}}</span> bij ons uitgegeven, u bent een echte <span
-      class="regenboog">knaller !</span></h3>
+    <h3>U hebt al <span class="regenboog">{{ordervalue  | currency :'EUR':'symbol':'1.2-2'}}</span> bij ons uitgegeven,
+      u bent een echte <span
+        class="regenboog">knaller !</span></h3>
   </div>
 
   <div class="changePassword">
@@ -28,7 +29,8 @@
                id="passwordRep_Input"
                placeholder="Herhaal het ingevoerde wachtwoord">
       </div>
-      <button type="button" class="btn btn-primary changePasswordBtn" (click)="changePassword(newPassword.value, repPassword.value)" >
+      <button type="button" class="btn btn-primary changePasswordBtn"
+              (click)="changePassword(newPassword.value, repPassword.value)">
         Verander wachtwoord
       </button>
     </form>
