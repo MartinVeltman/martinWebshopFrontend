@@ -72,7 +72,6 @@ export class authenticationService {
     this.toastr.success('Succesvol ingelogd');
     this.router.navigate(['/', 'userPanel']);
 
-
   }
 
   checkPasswords(password: string, passwordRepeat: string): boolean {
@@ -88,18 +87,23 @@ export class authenticationService {
     return false;
   }
 
-  public changePassword(username: String, newpassword: String) {
-    return this.http.patch(
-      this.baseUrl + `/user/changePassword?username=${username}&newpassword=${newpassword}`
-      , {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
+  public changePassword(newPassword: string) {
+    if (!this.itemService.getJwtToken()) {
+      return;
+    }
 
-        })
-      }).subscribe({
-      next: () => this.toastr.success('Wachtwoord succesvol veranderd'),
-      error: () => this.toastr.error('Wachtwoord veranderen mislukt, waarschijnlijk bent u niet ingelogd')
-    });
+    const token = this.itemService.getJwtToken();
+    let options = {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)
+        .set('Content-Type', 'application/json')
+    }
+
+    return this.http.patch(this.baseUrl + `/user/changePassword`, {newPassword: newPassword}
+      , options)
+      .subscribe({
+        next: () => this.toastr.success('Wachtwoord succesvol veranderd'),
+        error: () => this.toastr.error('Wachtwoord veranderen mislukt, waarschijnlijk bent u niet ingelogd')
+      });
   }
 
   public getOrderValue() {
@@ -108,7 +112,8 @@ export class authenticationService {
     }
 
     let options = {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.itemService.getJwtToken())
+      headers: new HttpHeaders()
+        .set('Authorization', 'Bearer ' + this.itemService.getJwtToken())
     }
 
     return this.http.get(this.baseUrl + `/user/getOrderValue`, options)

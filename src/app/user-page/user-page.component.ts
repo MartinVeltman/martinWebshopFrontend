@@ -43,7 +43,7 @@ export class UserPageComponent implements OnInit {
     }
     this.clearPasswordFields();
 
-    this.authService.changePassword(this.username, password);
+    this.authService.changePassword(password);
   }
 
   clearPasswordFields() {

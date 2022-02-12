@@ -3,6 +3,7 @@ import {Item} from "./item.model";
 import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
+import {stringify} from "@angular/compiler/src/util";
 
 
 @Injectable({
@@ -91,6 +92,7 @@ export class itemService {
   }
 
   getJwtToken() {
+    console.log("youuu")
     if (localStorage.getItem('jwtKey') != null || localStorage.getItem('jwtKey') != undefined) {
       const token = Object.values(JSON.parse(<string>localStorage.getItem('jwtKey'))).toString();
       return token;
@@ -126,15 +128,22 @@ export class itemService {
 
   }
 
-  public orderItem(username: string, orderValue: number) {
-    return this.http.patch(
-      this.baseUrl + `/user/createOrder?username=${username}&orderValue=${orderValue}`
-      , {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
+  public orderItem(orderValue: string) {
 
-        })
-      }).subscribe({
+    if (!this.getJwtToken()) {
+      return;
+    }
+
+    const token = this.getJwtToken();
+    let options = {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)
+        .set('Content-Type', 'application/json')
+    }
+
+
+    return this.http.patch(
+      this.baseUrl + `/user/createOrder`, {orderValue: orderValue}
+      , options).subscribe({
       next: () => this.orderSucces(), //TODO: winkelmandje legen hier
       error: () => this.toastr.error('Bestelling plaatsen mislukt, bent u wel ingelogd ?')
     });

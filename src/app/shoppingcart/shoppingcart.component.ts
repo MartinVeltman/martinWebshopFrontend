@@ -61,7 +61,7 @@ export class ShoppingcartComponent implements OnInit {
   }
 
   placeOrder(orderValue: number) {
-    this.itemService.orderItem(JSON.parse(<string>localStorage.getItem('username')), orderValue);
+    this.itemService.orderItem(orderValue.toString());
     localStorage.removeItem('cart')
 
   }
