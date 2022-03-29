@@ -11,8 +11,7 @@ import {Router} from "@angular/router";
 })
 export class itemService {
 
-  // baseUrl: string = "https://springbootbackend-martin.herokuapp.com/api/v1"; TODO: weghalen wanneer app wordt geployed
-  baseUrl: string = "http://localhost:8080/api/v1";
+  baseUrl: string = "https://springbootbackend-martin.herokuapp.com/api/v1";
 
   items: Item[] = [];
 

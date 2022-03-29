@@ -9,8 +9,8 @@ import {itemService} from "../item/item.service";
 
 @Injectable()
 export class authenticationService {
-  // baseUrl: string = "https://springbootbackend-martin.herokuapp.com/api/v1";
-  baseUrl: string = "http://localhost:8080/api/v1";
+  baseUrl: string = "https://springbootbackend-martin.herokuapp.com/api/v1";
+
   minPasswordLength: number = 8;
 
 
