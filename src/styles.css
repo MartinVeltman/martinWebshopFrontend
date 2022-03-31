@@ -4,19 +4,19 @@ a:hover {
 }
 
 .navbar-custom {
-  background-color: #F6CD13;
+  background-color: #F7F8F7;
 
 }
 
 .btn-primary, .btn-success {
-  background-color: #F51800;
-  border-color: #F51800;
+  background-color: #BD1E51;
+  border-color: #BD1E51;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .btn-primary:hover, .btn-primary:focus {
-  background-color: #F6CD13;
-  border-color: #F6CD13;
+  background-color: #F1B814;
+  border-color: #F1B814;
 }
 
 .h2Header {
